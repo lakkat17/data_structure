@@ -84,6 +84,31 @@ public class OperationsOnArray {
         System.out.print("\nElement " + ele + " not found");
     }
 
+    // find min & max both in single scan of array. Time taken -> O(n)
+    private static void findMinMax(int[] A) {
+        int min = A[0], max = A[0];
+        for (int e : A) {
+            if (max < e)
+                max = e;
+            else if (min > e)
+                min = e;
+        }
+        System.out.println("\nMaximum value is: " + max + " & minimum value is: " + min);
+    }
+
+    private static void find2ndMax(int[] A) {
+        int max = A[0], max2 = A[0];
+        for (int e : A) {
+            if (e > max)
+                max = e;
+        }
+        for (int e : A) {
+            if (e > max2 && e != max)
+                max2 = e;
+        }
+        System.out.println("Second Largest number is: " + max2);
+    }
+
     public static void main(String[] args) {
         add(5);
         add(2);
@@ -101,5 +126,8 @@ public class OperationsOnArray {
         display();
         search(5);
         search(8);
+        int[] A = {5, 8, 3, 9, 6, 2, 10, 7, -1, 4};
+        findMinMax(A);
+        find2ndMax(A);
     }
 }
