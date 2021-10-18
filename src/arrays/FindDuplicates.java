@@ -1,5 +1,7 @@
 package arrays;
 
+import java.util.HashMap;
+
 public class FindDuplicates {
 
     //find duplicates in sorted array
@@ -71,6 +73,17 @@ public class FindDuplicates {
         }
     }
 
+    private static void findPairWithHashing(int[] A, int k) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        int n = A.length;
+        for (int i = 0; i < n; ++i) {
+            if (hm.get(A[i]) != null) {
+                System.out.println("Pair of elements are: " + A[i] + " & " + (k - A[i]) + " with sum " + k);
+            }
+            hm.put(k - A[i], i);
+        }
+    }
+
     // find a pair with sum = k in a sorted array. Time Taken -> O(n)
     private static void findPairInSorted(int[] A, int k) {
         int i = 0, j = A.length - 1;
@@ -80,7 +93,7 @@ public class FindDuplicates {
             else if (A[i] + A[j] < k)
                 i++;
             else {
-                System.out.println("pair found are: " + A[i] + " & " + A[j] + " with sum " + k);
+                System.out.println("Pair found are: " + A[i] + " & " + A[j] + " with sum " + k);
                 i++;
                 j--;
             }
@@ -101,6 +114,8 @@ public class FindDuplicates {
         findPair(C, 10);
         System.out.println("-----------------------------------------------------------------------------------");
         findPairWithHashing(C, 10, 16);
+        System.out.println("-----------------------------------------------------------------------------------");
+        findPairWithHashing(C,10);
         System.out.println("-----------------------------------------------------------------------------------");
         findPairInSorted(D, 10);
     }
