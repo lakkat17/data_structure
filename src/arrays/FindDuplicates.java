@@ -22,7 +22,7 @@ public class FindDuplicates {
         while (i < n - 1) {
             if (A[i] == A[i + 1]) {
                 int j = i + 1;
-                while (A[j] == A[i])
+                while (j < n && A[j] == A[i])
                     j++;
                 System.out.println("Duplicate number is: " + A[i] + " with count: " + (j - i));
                 i = j - 1;

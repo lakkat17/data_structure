@@ -13,7 +13,7 @@ public class FindMissingNumber {
         System.out.println("Missing number in first " + n + " natural numbers is: " + (sum - s));
     }
 
-    // First N natural numbers starts with some numberq
+    // First N natural numbers starts with some number
     private static void findInNaturalStartsWith(int[] A, int n) {
         int start = A[0], i = 0;
         while (i < n) {

@@ -1,7 +1,5 @@
 package string;
 
-import java.util.HashSet;
-
 public class CheckPangram {
 
     public static boolean checkIfPangram(String sentence) {

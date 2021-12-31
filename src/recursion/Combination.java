@@ -4,7 +4,7 @@ public class Combination {
 
     /*
     Here we used pascal's triangle.
-    We can simple calculate all factorials required to calculate combination.
+    We can simply calculate all factorials required to calculate combination.
     nCr = n!/r!(n-r)! we have to find n! , r! & (n-r)! using factorial logic.
     */
     private static int comb(int n, int r) {

@@ -1,158 +1,29 @@
 package linkedList;
 
-public class LinkedList {
-    Node head = null;
-    Node tail = null;
+interface LinkedList<E> {
 
-    class Node {
-        int data;
-        Node next;
+    void add(E e);
 
-        Node(int d) {
-            data = d;
-            next = null;
-        }
-    }
+    void insert(E e, int index);
 
-    void add(int data) {
-        Node new_node = new Node(data);
+    void insert(E e);
 
-        if (head == null) {
-            head = new_node;
-            tail = new_node;
-        } else {
-            tail.next = new_node;
-            tail = new_node;
-        }
-    }
+    int size();
 
-    @Override
-    public String toString() {
+    void remove(int index);
 
-        if (head == null)
-            return "[]";
-        else {
-            String s = "[ ";
-            Node curr = head;
-            do {
-                s += curr.data + ", ";
-                curr = curr.next;
-            } while (curr != null);
-            return s.substring(0, s.length() - 2) + " ]";
-        }
-    }
+    void removeAll();
 
-    public void displayInReverse(Node n) {
-        if (n != null) {
-            displayInReverse(n.next);
-            System.out.print(n.data + " ");
-        }
-    }
+    void reverse();
 
-    // Time taken -> O(n)
-    public int size() {
-        Node n = head;
-        int size = 0;
-        while (n != null) {
-            size++;
-            n = n.next;
-        }
-        return size;
-    }
+    void reverseUsingLinks();
 
-    //recursion
-    // Time taken -> O(n), Space -> O(n) due to recursive call.
-    public int size(Node n) {
-        if (n == null)
-            return 0;
-        else
-            return size(n.next) + 1;
-    }
-
-    public int sum() {
-        Node n = head;
-        int sum = 0;
-        while (n != null) {
-            sum += n.data;
-            n = n.next;
-        }
-        return sum;
-    }
-
-    public int max() {
-        int max = head.data;
-        Node n = head;
-        while (n != null) {
-            if (max < n.data)
-                max = n.data;
-            n = n.next;
-        }
-        return max;
-    }
-
-    // recursion
-    public int max(Node n, int max) {
-        if (n == null)
-            return max;
-        return max < n.data ? max(n.next, n.data) : max(n.next, max);
-    }
+    <T extends LinkedList> void concat(T t);
 
     // Linear search
-    public boolean search(int ele) {
-        Node n = head;
-        while (n != null) {
-            if (ele == n.data)
-                return true;
-            n = n.next;
-        }
-        return false;
-    }
+    boolean search(E e);
 
-    // Linear search and "moving to head" . This is to improve linear search for next time.
-    public boolean searchAndMove(int ele) {
-        Node n = head;
-        Node q = null;
-        while (n != null) {
-            if (ele == n.data) {
-                if (q != null) {  // check if element found at very first place.
-                    q.next = n.next;  // This will remove matching node from LL.
-                    if(n==tail)   // in case element found at tail position.
-                        tail = q;
-                    n.next = head;    // This will move matching
-                    head = n;         // node to head.
-                    return true;
-                }
-            }
-            q = n;
-            n = n.next;
-        }
-        return false;
-    }
-
-    // inserting node in LinkedList . Time Taken -> O(n)
-    public void insert(int data, int index) {
-        int i = 0;
-        Node new_node = new Node(data);
-        if (index == 0) {
-            new_node.next = head;
-            head = new_node;
-        } else if (index > 0 && index <= this.size()) {
-            Node curr = head;
-            while (i < index - 1) {  // used to move the pointer to required position in LL
-                curr = curr.next;
-                i++;
-            }
-
-            if(curr == tail)
-                tail=new_node;
-
-            new_node.next = curr.next;  // insert node to required position
-            curr.next = new_node;
-        } else
-            System.out.println("Invalid index... Please select index range from 0 to " + (this.size()));
-    }
-
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
         LinkedList ll = new LinkedList();
 
         ll.add(10);
@@ -176,5 +47,39 @@ public class LinkedList {
         System.out.println("Inserting 70 at fifth position");
         ll.insert(70, 5);
         System.out.println(ll);
-    }
+        System.out.println("------------------------------------------------------------------------------------");
+        LinkedList ll2 = new LinkedList();
+
+        ll2.insert(10);
+        ll2.insert(50);
+        ll2.insert(20);
+        ll2.insert(15);
+        ll2.add(5);
+        System.out.println(ll2);
+        ll2.remove(3);
+        ll2.remove(0);
+        System.out.println(ll2);
+        System.out.println("LinkedList is sorted: " + ll2.isSorted());
+        LinkedList ll3 = new LinkedList();
+        ll3.add(1);
+        ll3.add(2);
+        ll3.add(2);
+        ll3.add(2);
+        ll3.add(5);
+        ll3.add(5);
+        ll3.add(6);
+        System.out.println(ll3);
+        ll3.removeDuplicate();
+        System.out.println("After removing duplicates: " + ll3);
+        System.out.println("------------------------------------------------------------------------------------");
+
+        System.out.println("------------------------------------------------------------------------------------");
+        LinkedList ll5 = new LinkedList();
+        ll5.add(10);
+        ll5.add(20);
+        ll5.add(30);
+        ll5.add(40);
+        ll4.concat(ll5);
+        System.out.println("Concatenate ll4 + ll5 : " + ll4);
+    }*/
 }
