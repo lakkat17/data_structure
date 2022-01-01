@@ -1,5 +1,7 @@
 package linkedList;
 
+import java.util.Stack;
+
 public class SinglyLinkedList<E> implements LinkedList<E> {
 
     Node head = null;
@@ -339,5 +341,38 @@ public class SinglyLinkedList<E> implements LinkedList<E> {
             } while (curr != null);
             return s.substring(0, s.length() - 2) + " ]";
         }
+    }
+
+    public void link(SinglyLinkedList linkThis, int atIndex){
+        Node p = this.head;
+
+        for(int i = 0;i<atIndex;++i)
+            p=p.next;
+
+        linkThis.tail.next=p;
+    }
+
+    public void findIntersection(SinglyLinkedList ll) {
+        Node p = this.head;
+        Node q = ll.head;
+
+        Stack<Node> s1 = new Stack<>();
+        Stack<Node> s2 = new Stack<>();
+
+        while (p != null) {
+            s1.push(p);
+            p = p.next;
+        }
+
+        while (q != null) {
+            s2.push(q);
+            q = q.next;
+        }
+        Node s = null;
+        while (s1.peek().e == s2.peek().e) {
+            s = s1.pop();
+            s2.pop();
+        }
+        System.out.println("Insertion at: " + s.e);
     }
 }
