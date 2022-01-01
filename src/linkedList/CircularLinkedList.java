@@ -66,7 +66,21 @@ public class CircularLinkedList<E> implements LinkedList<E>{
 
     @Override
     public void remove(int index) {
+        Node n = head;
 
+        if (head == null)
+            return;
+
+        if (index == 0) {
+            while (n.next != head)
+                n = n.next;
+            n.next = head.next;
+            head = head.next;
+        } else {
+            for (int i = 0; i < index - 1; ++i)
+                n = n.next;
+            n.next = n.next.next;
+        }
     }
 
     @Override
@@ -113,7 +127,10 @@ public class CircularLinkedList<E> implements LinkedList<E>{
         ll.add(10);
         ll.add(20);
         ll.add(40);
-        ll.insert(30,0);
-        System.out.println(ll);
+        System.out.println("Circular LinkedList " + ll);
+        ll.insert(30,2);
+        System.out.println("After inserting: " + ll);
+        ll.remove(0);
+        System.out.println("After deletion: " + ll);
     }
 }
