@@ -375,4 +375,43 @@ public class SinglyLinkedList<E> implements LinkedList<E> {
         }
         System.out.println("Insertion at: " + s.e);
     }
+
+    // O(n) time & space O(1)
+    public boolean isPalindrome(){
+
+        if(head==null && head.next==null)
+            return false;
+
+        Node mid=null,prev=null,curr=null, slow = head, fast=head;
+
+        // getting mid of LL   -> O(n)
+        while (fast != null) {
+            fast = fast.next != null ? fast.next.next : null;
+            mid = slow;
+            slow = slow.next;
+        }
+
+        //reversing 2nd half   -> O(n/2)
+        while(slow!=null){
+            prev=curr;
+            curr=slow;
+            slow=slow.next;
+            curr.next=prev;
+        }
+        //saving mid Node
+        mid.next=curr;
+
+        //comparing first and 2nd half of LL
+        fast=head;
+        mid=mid.next;
+
+        while (mid!=null && fast.e==mid.e){   // O(n/2)
+            mid=mid.next;
+            fast=fast.next;
+        }
+
+        if(mid==null)
+            return true;
+        return false;
+    }
 }
